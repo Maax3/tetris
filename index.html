@@ -6,9 +6,10 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="css/estilosCompilados.css">
   <!--Vercel analytics-->
-  <script defer>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments) };
   </script>
+  <script defer src="/_vercel/insights/script.js"></script>
   <!--Tetris-->
   <script type="module" src="js/main.js" defer></script>
   <script type="module" src="js/web.js" defer></script>
@@ -105,19 +106,21 @@
           <th class="px-8 py-4">Partida</th>
           <th class="px-8 py-4">Puntos</th>
         </thead>
-   
+
       </table>
     </div>
-    
+
 
     <!--  BTN RESET -->
     <div class="flex justify-center items-center my-6">
-      <button class="text-white sm:text-3xl p-4 border-2 border-white bg-gradient-to-bl from-red-900 to bg-red-500 rounded-xl shadow-md shadow-indigo-700 active:translate-y-2 outline-none me-4 sm:me-12"
+      <button
+        class="text-white sm:text-3xl p-4 border-2 border-white bg-gradient-to-bl from-red-900 to bg-red-500 rounded-xl shadow-md shadow-indigo-700 active:translate-y-2 outline-none me-4 sm:me-12"
         id="btnRestart">Restart
       </button>
-      <button class="text-white sm:text-3xl p-4 border-2 border-white bg-gradient-to-bl from-red-500 to bg-red-900 rounded-xl shadow-md shadow-indigo-700 active:translate-y-2 outline-none"
-      id="btnBorrarPuntos">Borrar puntos
-    </button>
+      <button
+        class="text-white sm:text-3xl p-4 border-2 border-white bg-gradient-to-bl from-red-500 to bg-red-900 rounded-xl shadow-md shadow-indigo-700 active:translate-y-2 outline-none"
+        id="btnBorrarPuntos">Borrar puntos
+      </button>
     </div>
   </dialog>
   <!-- END VENTANA MODAL -->
