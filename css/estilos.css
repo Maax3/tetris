@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Inline&family=Pixelify+Sans&family=Rubik+Doodle+Shadow&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  font-family: 'Bungee', Courier, monospace;
+}
+/* cd Entornos_Cliente/Proyectos/tetris/
+npx tailwindcss -i ./css/estilos.css -o ./css/estilosCompilados.css --watch */
+
+
+
+

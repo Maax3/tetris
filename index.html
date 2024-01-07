@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="css/estilosCompilados.css">
+  <script type="module" src="js/main.js" defer></script>
+  <script type="module" src="js/web.js" defer></script>
+  <title>Tetris</title>
+  <style>
+    td {
+      padding: 8px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-800">
+  <!-- DIV para centrar el CANVAS despues de cerrar la modal hidden -->
+  <div class="my-2 text-center flex-row sm:flex justify-evenly items-center">
+    <!-- Contenido que aparece despues de cerrar la ventana modal -->
+    <div id="tituloAfterPlay" class="hidden bg-customDark text-center py-4">
+      <h1 class=" text-green-500 text-5xl md:text-9xl  drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Tetris
+      </h1>
+      <h1 class="text-green-500 md:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Game</h1>
+      <a href="https://github.com/Maax3" target="_blank"
+        class="hidden sm:visible sm:flex justify-center items-center my-4">
+        <img src="img/github_logo.png" alt="github" />
+      </a>
+    </div>
+
+    <!-- HTML / Canvas -->
+    <div class="my-auto bg-transparent tablero">
+      <canvas id="canvas"
+        class="max-w-96 sm:max-w-lg bg-customBlue border-borderCanvas border-4 rounded-3xl  shadow-indigo-400 shadow-xl">
+      </canvas>
+    </div>
+    <!-- Score / Piezas -->
+    <div id="divImagen" class="invisible sm:me-64">
+      <img id="imagen" src="" alt="imagen"
+        class="hidden sm:flex mx-auto border-8 border-dotted border-yellow-300 bg-gradient-to-bl from-customDark to-customBlue">
+      <h1 class="text-5xl sm:text-7xl text-red-500 drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]  p-4 mt-12">
+        Score:
+      </h1>
+      <h2 id="score" class="text-5xl sm:text-6xl text-yellow-300 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]">
+        0
+      </h2>
+    </div>
+
+  </div>
+
+  <!-- VENTANA MODAL -->
+  <dialog id="ventanaMenu" class="w-auto sm:w-2/5 h-fit bg-gray-900 border-4 border-blue-800 rounded-xl">
+
+    <div class="flex-row bg-customDark text-center py-4 border-b-4 border-blue-800">
+      <h1 class=" text-green-500 text-5xl sm:text-9xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Tetris</h1>
+      <h1 class="text-green-500 text-3xl sm:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Game</h1>
+    </div>
+    <!-- VENTANA MODAL BTN HARD -->
+    <div class="flex flex-col justify-center items-center">
+      <label for="hardDifficulty"
+        class="text-red-500 my-12  px-4 p-2 pe-8 text-3xl border-2 border-white bg-blue-950 rounded-xl  active:translate-y-2 transition-all ease-in-out duration-300 ">
+        <input type="checkbox" name="hardDifficulty" id="hardDifficulty" value="true"
+          class="mx-4 w-4 h-5 outline-none">HARD</input>
+      </label>
+      <!-- VENTANA MODAL BTN PLAY -->
+      <button class="text-yellow-300 text-7xl p-4 mt-8 bg-customBlue rounded-xl
+        transition-all duration-700 hover:ease-in-out hover:bg-red-700 shadow-md shadow-indigo-50 animate-bounce"
+        id="btnMenuStart">Play
+      </button>
+    </div>
+    <div class="flex justify-end me-2 mb-2">
+      <a href="https://github.com/Maax3" target="_blank" class="">
+        <img src="img/github_logo.png" alt="github" />
+      </a>
+    </div>
+  </dialog>
+  <!-- END VENTANA MODAL -->
+
+  <!-- VENTANA MODAL GAME OVER -->
+  <dialog id="ventanaGameOver" class="w-auto sm:w-3/6 h-fit bg-gray-900 border-4 border-blue-800 rounded-xl">
+
+    <div class="flex-row bg-customDark text-center py-4 border-b-4 border-blue-800">
+      <h1 class=" text-red-600 text-8xl sm:text-9xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Game</h1>
+      <h1 class="text-red-600 text-5xl sm:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Over</h1>
+      <div class="hidden sm:flex justify-center sm:text-5xl">
+        😭
+      </div>
+    </div>
+
+    <!-- Score -->
+    <h1 id="scoreFinal"
+      class="text-center text-4xl sm:text-5xl p-4 text-yellow-300 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]">
+      Score: 3333
+    </h1>
+
+    <div class="flex justify-evenly items-center bg-gray-800 border-y-4 border-blue-800 ">
+      <table id="tablaPuntos" class="my-6 divide-y-2 divide-indigo-500 text-center text-white text-2xl bg-customBlue">
+        <thead class="text-yellow-400 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]  text-3xl">
+          <th class="px-8 py-4">Partida</th>
+          <th class="px-8 py-4">Puntos</th>
+        </thead>
+   
+      </table>
+    </div>
+    
+
+    <!--  BTN RESET -->
+    <div class="flex justify-center items-center my-6">
+      <button class="text-white sm:text-3xl p-4 border-2 border-white bg-gradient-to-bl from-red-900 to bg-red-500 rounded-xl shadow-md shadow-indigo-700 active:translate-y-2 outline-none me-4 sm:me-12"
+        id="btnRestart">Restart
+      </button>
+      <button class="text-white sm:text-3xl p-4 border-2 border-white bg-gradient-to-bl from-red-500 to bg-red-900 rounded-xl shadow-md shadow-indigo-700 active:translate-y-2 outline-none"
+      id="btnBorrarPuntos">Borrar puntos
+    </button>
+    </div>
+  </dialog>
+  <!-- END VENTANA MODAL -->
+
+
+</body>
+
+</html>
