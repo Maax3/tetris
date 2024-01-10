@@ -53,21 +53,21 @@
   </div>
 
   <!-- VENTANA MODAL -->
-  <dialog id="ventanaMenu" class="w-auto sm:w-2/5 h-fit bg-gray-900 border-4 border-blue-800 rounded-xl">
+  <dialog id="ventanaMenu" class="min-w-80 sm:min-w-fit sm:w-2/5 h-fit bg-gray-900 border-4 border-blue-800 rounded-xl">
 
     <div class="flex-row bg-customDark text-center py-4 border-b-4 border-blue-800">
-      <h1 class=" text-green-500 text-5xl sm:text-9xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Tetris</h1>
-      <h1 class="text-green-500 text-3xl sm:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Game</h1>
+      <h1 class="text-clip text-green-500 text-5xl  sm:text-9xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Tetris</h1>
+      <h1 class="text-clip text-green-500 text-3xl  sm:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Game</h1>
     </div>
     <!-- VENTANA MODAL BTN HARD -->
     <div class="flex flex-col justify-center items-center">
       <label for="hardDifficulty"
-        class="text-red-500 my-12  px-4 p-2 pe-8 text-3xl border-2 border-white bg-blue-950 rounded-xl  active:translate-y-2 transition-all ease-in-out duration-300 ">
+        class=" text-red-500 my-12 pe-4 py-2 text-2xl sm:text-3xl border-2 border-white bg-blue-950 rounded-xl  active:translate-y-2 transition-all ease-in-out duration-300 ">
         <input type="checkbox" name="hardDifficulty" id="hardDifficulty" value="true"
-          class="mx-4 w-4 h-5 outline-none">HARD</input>
+          class="accent-red-600 mx-4 w-4 h-5 outline-none">HARD</input>
       </label>
       <!-- VENTANA MODAL BTN PLAY -->
-      <button class="text-yellow-300 text-7xl p-4 mt-8 bg-customBlue rounded-xl
+      <button class="text-yellow-300 text-4xl sm:text-7xl p-4 mt-8 bg-customBlue rounded-xl
         transition-all duration-700 hover:ease-in-out hover:bg-red-700 shadow-md shadow-indigo-50 animate-bounce"
         id="btnMenuStart">Play
       </button>
@@ -81,11 +81,11 @@
   <!-- END VENTANA MODAL -->
 
   <!-- VENTANA MODAL GAME OVER -->
-  <dialog id="ventanaGameOver" class="w-auto sm:w-3/6 h-fit bg-gray-900 border-4 border-blue-800 rounded-xl">
+  <dialog id="ventanaGameOver" class="min-w-80 w-auto sm:min-w-fit sm:w-3/6 h-fit bg-gray-900 border-4 border-blue-800 rounded-xl">
 
     <div class="flex-row bg-customDark text-center py-4 border-b-4 border-blue-800">
-      <h1 class=" text-red-600 text-8xl sm:text-9xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Game</h1>
-      <h1 class="text-red-600 text-5xl sm:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Over</h1>
+      <h1 class=" text-red-600 text-5xl sm:text-9xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)] mx-5">Game</h1>
+      <h1 class="text-red-600 text-2xl sm:text-7xl drop-shadow-[0_4.4px_1.2px_rgba(255,255,255,15)]">Over</h1>
       <div class="hidden sm:flex justify-center sm:text-5xl">
         😭
       </div>
@@ -93,13 +93,13 @@
 
     <!-- Score -->
     <h1 id="scoreFinal"
-      class="text-center text-4xl sm:text-5xl p-4 text-yellow-300 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]">
+      class="text-center text-2xl sm:text-5xl p-4 text-yellow-300 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]">
       Score: 3333
     </h1>
 
     <div class="flex justify-evenly items-center bg-gray-800 border-y-4 border-blue-800 ">
-      <table id="tablaPuntos" class="my-6 divide-y-2 divide-indigo-500 text-center text-white text-2xl bg-customBlue">
-        <thead class="text-yellow-400 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]  text-3xl">
+      <table id="tablaPuntos" class="my-6 divide-y-2 divide-indigo-500 text-center text-white text-xl sm:text-2xl bg-customBlue">
+        <thead class="text-yellow-400 drop-shadow-[0_4.4px_1.2px_rgba(255,55,55,15)]  text-2xl sm:text-3xl">
           <th class="px-8 py-4">Partida</th>
           <th class="px-8 py-4">Puntos</th>
         </thead>
