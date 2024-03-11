@@ -18,7 +18,7 @@ Se ha utilizado vanilla Javascript, Canvas para la animación y Tailwind para lo
 |                                                                       |
 |-----------------------------------------------------------------------|
 | ✔️ Dibujo del tablero y su matriz.                                    |
-| ✔️ Implementación del método de dibujo de cada ficha.                 |
+| ✔️ Funcion que dibuje cada ficha.                 |
 | ✔️ Descenso automático de las piezas (animación).                     |
 | ✔️ Colores aleatorios en cada partida.                                |
 | ✔️ Movimiento con A-W-S-D y flechas.                                  |
@@ -69,48 +69,34 @@ La bolsa representa un conjunto de ``PIEZAS`` de la cual se va obteniendo una ``
 
 *PIEZAS* es un array predefinido de las 7 piezas que tienen una letra y color. Ejemplo:
 ```js
-const PIEZAS [
-  ['L', 'red'],
-  ['J', 'white']
+const PIEZAS = [
+  ['T', "#E71D36"],
+  ['Z', "#FF44FF"],
+  ['S', "#F46036"],
+  ['J', "yellow"],
+  ['L', "#00FF00"],
+  ['I', "cyan"],
+  ['O', "white"]
 ]
 ```
 
-![](img/readme/bolsa3.png)
+![](img/readme/bolsa6.png)
 
+Se hace una copia de la matriz PIEZAS y a partir del **length** de 'copia' se va sacando un número aleatorio.
 
-En el **for** la ``i`` va aumentando y al mismo tiempo restándose en la función ``aleatorio()``. De esta manera, al disminuir el ``length`` del array por .splice(), también disminuye el número random que puede salir, evitando el 'undefined'. Ejemplo:
-
-```sh
-1º Vuelta: 
-  7 - 0 = 7. Se escoge un número entre 0 y 6. 
-  El array.length disminuye en 1 y pasa a 6.
-```
-```sh
-2º Vuelta:
-  7 - 1 = 6. Se escoge un número entre 0 y 5. 
-  El array.length disminuye en 1 y pasa a 5. 
-```
-```sh
-3º Vuelta: 
-  7 - 2 = 5. Se escoge un número entre 0 y 4. 
-  El array.length disminuye en 1 y pasa a 4. 
-```
+En la primera vuelta el número será de 0 a 6, como **splice** muta la matriz, en la siguiente vuelta tendrá una longitud de 6 y el número aleatorio será de 0 a 5.
 
 ### Método que saca una ficha de la bolsa y la elimina.
 
 Como el array 'bolsa' ya esta desordenado gracias al método anterior, basta con comprobar si quedan piezas en la bolsa y hacer un ``.splice()`` para sacar la ficha.
 
-![](img/readme/bolsa4.png)
+![](img/readme/bolsa7.png)
 
-Este método también nos permite saber cual va ser la siguiente pieza por salir. Al eliminar la pieza 'actual' con splice, si volvemos a llamar a ``this.piezasAleatorias[0]`` obtendremos la próxima ficha.
+Después, he ampliado el método para saber cual va ser la siguiente pieza por salir. Al eliminar la pieza 'actual' con splice, si volvemos a llamar a ``this.piezasAleatorias[0]`` obtendremos la próxima ficha.
 
-Después podemos sacar la letra del array y concatenarla para crear una URL para la etiqueta <img>.
+Asimismo, podemos sacar la letra del array y concatenarla para crear una URL para la etiqueta `<img>`.
 
-```sh
-Ejemplo: img.src = "img/L.png";
-```
-
-![](img/readme/bolsa5.png)
+![](img/readme/bolsa8.png)
 
 
  ## Colisiones
@@ -142,42 +128,26 @@ La ``solución`` para que tanto los eventos como las animaciones funcionen en ar
 
 ![](img/readme/tiempo.png)
 
-Utilizaremos la clase ``Date`` y calcularemos el tiempo que pasa entre la ejecución de funciones. Por defecto, la variable *milisegundos* equivale a 1000 (1 segundo). Cuando el lapso de tiempo sea superior a 1000, se dispara el código que dibuja la ficha dentro de ``requestAnimation(animacion)``.
+Utilizaremos la clase ``Date`` y calcularemos el tiempo que pasa entre la ejecución de funciones. 
 
 Además, esta fórmula también permite evitar el desplazamiento automático de la pieza mientras el jugador la mueva o rote.
 
 ![](img/readme/desplazamiento_demo.gif)
 
+![](img/readme/tiempo3.png)
+
 ## Borrar filas
 
-Para borrar filas, lo más sencillo es comprobar que una fila tenga todos los valores iguales a '2' que es el valor que representa una casilla fija dentro de mi tablero. En este caso es posible usar la función ``every()`` que nos devuelve ``true`` si todos los valores cumplen el valor especificado y ``false`` si no es así. **La ventaja de usar este método es que, en el momento que no coincida un único valor, para de buscar coincidencias, devuelve ``false`` y pasa a la siguiente fila**.
+Para borrar filas, cuando una pieza colisiona con otra o el tablero, cambia su valor interno de '1' a '2'. De esta forma, es posible iterar sobre el tablero y comprobar si una fila tiene todos sus valores a '2'.
 
-Ejemplo:
+ En este caso es posible usar la función ``every()`` que nos devuelve ``true`` si todos los valores cumplen el valor especificado y ``false`` si no es así. **La ventaja de usar este método es que, en el momento que no coincida un único valor para de buscar coincidencias, devuelve ``false`` y pasa a la siguiente fila**.
 
-```js
-function comprobar(tablero) {
-  for (let i = tablero.length - 1; i >= 0; i--) {
-    const fila = tablero[i].every(casilla => casilla === 2);
-    if (fila) {
-      tablero.splice(i, 1);
-      tablero.unshift([...nuevaFila]);
-      score += 100;
-      recuentoFilas++;
-      i++; //Revisamos la misma fila otra vez.
-    }
-  }
-}
-```
+![](img/readme/comprobar1.png)
 
-Finalmente, para insertar una nueva fila podemos usar:
+Para insertar una nueva fila también podemos usar:
 ```js
 const fila = [0,0,0,0,0,0,0,0,0,0]
 ```
-u Optar por:
-```js
-//permite crear un array de 'x' tamaño, en este caso será igual al número de columnas especificadas del tablero.
-const nuevaFila = Array.(COLUMNAS).fill(0);
-``` 
 
 ## Selección aleatoria entre controles normales/invertidos
 
@@ -196,20 +166,21 @@ Más información [aquí](https://es.javascript.info/localstorage).
 3. Como todos los datos se convierten a "String" es necesario hacer un *parseInt* para aumentar el valor del ``contador``.
 4. Comparamos con ``IF-ELSE`` y asignamos el evento según el número de recargas web && el número aleatorio.
 
+*Esta función se ejecuta después de seleccionar el modo hard y jugar una partida.*
+
 ![](img/readme/desplazamientoAleatorio0.png)
 
 ### Ejemplo de 'X' recargas y selección de controles 'normales'.
 ![](img/readme/desplazamientoAleatorio1.png)
 ### Ejemplo de 'X' recargas y selección de controles 'invertidos'.
 ![](img/readme/desplazamientoAleatorio2.png)
-### Primera vez
-![](img/readme/desplazamientoAleatorio3.png)
+
 
 ## Puntuación persistente sin BDD
 
-El juego define 2 'mapas' de clave/valor en cada inicio/refresco de página y se mantiene la persistencia mediante ``localStorage``. El primero es un acumulador que va aumentando con cada partida y el segundo se encarga de guardar la puntuación de la partida actual. 
+El juego define 2 variables de ``localStorage`` para guardar el numero de partidas y la puntuación de la partida actual. 
 
-Como resultado, tendrías:
+Al unir ambos, tendriamos el numero de la partida y los datos (puntuación) de la misma. Ejemplo:
 - partida 1, 3000 puntos
 - partida 2, 0 puntos
 - partida 3, 200 puntos
@@ -218,7 +189,7 @@ Después, se recorre todo el objeto y se imprime dinámicamente con Javascript e
 
 ![](img/readme/puntos.png)
 
-La razón por la que se usa el *.subString()* es porque las claves o keys no pueden contener espacios en blanco. Es decir, puedes tener partida1/250, pero no partida 1/250.
+La razón por la que se usa el *.subString()* es porque las claves o keys no pueden contener espacios en blanco. Es decir, puedes tener partida1, pero no partida 1.
 
 
 # Recursos

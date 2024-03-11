@@ -192,7 +192,7 @@ function casillaOcupada(izquierda = false, derecha = false) {
 }
 
 /* *
- * Recorre las matriz del Tablero en busca de una pieza [valor === 1]
+ * Recorre la matriz del Tablero en busca de una pieza [valor === 1]
  * Si encuentra una casilla === 1, entonces la fija al tablero sustituyendo el valor a 2
  */
 
@@ -219,11 +219,12 @@ function comprobarLinea(tablero) {
     if (fila) {
       tablero.splice(i, 1);
       tablero.unshift([...nuevaFila]);
-      score += 100;
-      puntuacion.innerHTML = score;
       recuentoFilas++;
       i++; //Revisamos la misma fila otra vez.
-
+      
+      //::::::  LOGICA DEL SCORE o PUNTUACION + Sonido :::::::::
+      score += 100;
+      puntuacion.innerHTML = score;
       if (recuentoFilas >= 2 && milisegundos <= 1000) {
         milisegundos += 10 + (50 * recuentoFilas);
         recuentoFilas = 0;
