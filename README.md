@@ -14,6 +14,31 @@ Se ha utilizado vanilla Javascript, Canvas para la animación y Tailwind para lo
 
 ![](img/readme/pr0.gif)
 
+# Tareas realizadas
+|                                                                       |
+|-----------------------------------------------------------------------|
+| ✔️ Dibujo del tablero y su matriz.                                    |
+| ✔️ Implementación del método de dibujo de cada ficha.                 |
+| ✔️ Descenso automático de las piezas (animación).                     |
+| ✔️ Colores aleatorios en cada partida.                                |
+| ✔️ Movimiento con A-W-S-D y flechas.                                  |
+| ✔️ Creación de la clase 'Bolsa' para la gestión de fichas aleatorias. |
+| ✔️ Gestión de colisiones.                                             |
+| ✔️ Rotación de las piezas.                                            |
+| ✔️ Lógica para borrar filas con casillas ocupadas.                    |
+| ✔️ Score sin vista.                                                   |
+| ✔️ Gestión de la velocidad.                                           |
+| ✔️ Sonido.                                                            |
+| ✔️ Creación de la web con Tailwind.                                   |
+| ✔️ Diseño de niveles, botones de sonido, play, selección en Tailwind. |
+| ✔️ Score con vista.                                                   |
+| ✔️ Mostrar la siguiente ficha dentro de la bolsa.                     |
+| ✔️ Dificultad HARD.                                                   |
+| ✔️ Desplazamiento aleatorio                                           |
+| ✔️ Diseño adaptativo a móvil                                          |
+| ✔️ Ventana del Game Over                                              |
+| ✔️ localStorage + tabla de puntuación                                 |
+
 
 # Dificultades
 El juego cuenta con 2 tipos de dificultades:
@@ -195,30 +220,6 @@ Después, se recorre todo el objeto y se imprime dinámicamente con Javascript e
 
 La razón por la que se usa el *.subString()* es porque las claves o keys no pueden contener espacios en blanco. Es decir, puedes tener partida1/250, pero no partida 1/250.
 
-# Tareas realizadas
-|                                                                       |
-|-----------------------------------------------------------------------|
-| ✔️ Dibujo del tablero y su matriz.                                    |
-| ✔️ Implementación del método de dibujo de cada ficha.                 |
-| ✔️ Descenso automático de las piezas (animación).                     |
-| ✔️ Colores aleatorios en cada partida.                                |
-| ✔️ Movimiento con A-W-S-D y flechas.                                  |
-| ✔️ Creación de la clase 'Bolsa' para la gestión de fichas aleatorias. |
-| ✔️ Gestión de colisiones.                                             |
-| ✔️ Rotación de las piezas.                                            |
-| ✔️ Lógica para borrar filas con casillas ocupadas.                    |
-| ✔️ Score sin vista.                                                   |
-| ✔️ Gestión de la velocidad.                                           |
-| ✔️ Sonido.                                                            |
-| ✔️ Creación de la web con Tailwind.                                   |
-| ✔️ Diseño de niveles, botones de sonido, play, selección en Tailwind. |
-| ✔️ Score con vista.                                                   |
-| ✔️ Mostrar la siguiente ficha dentro de la bolsa.                     |
-| ✔️ Dificultad HARD.                                                   |
-| ✔️ Desplazamiento aleatorio                                           |
-| ✔️ Diseño adaptativo a móvil                                          |
-| ✔️ Game Over                                                          |
-| ✔️ localStorage + tabla de puntuación                                 |
 
 # Recursos
 * [Video_ENG](https://www.youtube.com/watch?v=HEsAr2Yt2do).
