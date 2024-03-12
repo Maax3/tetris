@@ -1,5 +1,5 @@
 /**
- * La clase Bolsa se encarga de generar las 7 piezas del tetris y mostrar la imagen de la siguiente pieza.
+ * La clase Bolsa se encarga de generar las 7 piezas del tetris.
  * Las piezas se crean de forma aleatoria, pero el algoritmo asegura que no salgan 2 piezas iguales hasta que se vacie el array/bolsa.
  */
 
@@ -12,7 +12,6 @@ const PIEZAS = [
   ['I', "cyan"],
   ['O', "white"]
 ]
-//Imagen a usar para mostrar que pieza va ser la siguiente, ej: cuadrado = O.png
 const img = document.getElementById('imagen');
 const LETRAS = "TZSJLIO"
 const aleatorio = valor => Math.floor(Math.random() * valor);
@@ -24,7 +23,7 @@ export class Bolsa {
   }
 
   /**
-   * Metodo interno del objeto Bolsa.
+   * Clase interna del objeto Bolsa.
    * Copia por valor los elementos del array PIEZAS y las guarda de forma aleatoria en 'nuevaBolsa'.
    */
   obtenerBolsa(){
@@ -46,12 +45,13 @@ export class Bolsa {
    * El metodo también es capaz de mostrar la siguiente pieza de la bolsa accediendo a la siguiente posición después de splice() 
    * y sobreescribiendo el atributo 'src' de la etiquta <img>.
    */
- 
+
   obtenerPieza(){
     if (this.piezasAleatorias.length === 0){
       this.piezasAleatorias = this.obtenerBolsa();
     }
-    const pieza = this.piezasAleatorias.splice(0,1);
+    const pieza = this.piezasAleatorias[0];
+    this.piezasAleatorias.splice(0,1);
     //Obtenemos la siguiente pieza despues de eliminar la actual con splice:
     const siguientePieza = this.piezasAleatorias[0];
     if (siguientePieza !== undefined && LETRAS.includes(siguientePieza[0])){
@@ -61,4 +61,3 @@ export class Bolsa {
     return pieza;
   }
 }
-

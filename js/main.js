@@ -209,6 +209,12 @@ function solidificarPieza(tablero, pieza) {
   }
 }
 
+/**
+ * Comprueba si existen filas completas y si es así, la elimina. 
+ * Después crea una fila adicional por arriba.
+ * Esta función, también asigna la puntuación al Frontend.
+ */
+
 function comprobarLinea(tablero) {
   //Si le pasas un numero a la clase Array, puedes especificar su longitud. 
   //Si lo combinas con fill, crea un array de '0' de la longitud de COLUMNAS.

@@ -59,6 +59,27 @@ El tetris trae una paleta de colores por defecto, pero gracias a la propiedad ``
 
 ![](img/readme/colores_demo.gif)
 
+## Creación del Tablero.
+
+Para la creación de un tablero 'genérico' se ha utilizado POO (programación orientada a objetos) y CANVAS. En este caso, existe una clase llamada **Tablero**:
+
+![](img/readme/tablero1.png)
+![](img/readme/tablero2.png)
+
+Esta clase también tiene un método llamado **setTablero()** que realiza 2 funciones:
+- Por un lado, dibuja el tablero en el HTML.
+- Por otro lado, crea una matriz interna que representa ese tablero.
+
+![](img/readme/tablero3.png)
+
+
+Comprobar la creación del tablero: 
+```js
+ 1. Inspeccionar y seleccionar 'Fuentes'
+ 2. Crear un punto de ruptura en la linea 43 del main.js
+ 3. Recargar
+```
+
 ## Bolsa virtual de piezas.
 
 La bolsa representa un conjunto de ``PIEZAS`` de la cual se va obteniendo una ``FICHA`` hasta quedar completamente vacía. Una vez vacía, se rellena automáticamente con otro conjunto de ``PIEZAS`` aleatorias. Esto evita la repetición de una misma ficha varias veces. La única vez que se da el caso de repetición es cuando coincide la última ficha de la primera bolsa con la primera ficha de la siguiente bolsa. 
@@ -90,14 +111,26 @@ En la primera vuelta el número será de 0 a 6, como **splice** muta la matriz, 
 
 Como el array 'bolsa' ya esta desordenado gracias al método anterior, basta con comprobar si quedan piezas en la bolsa y hacer un ``.splice()`` para sacar la ficha.
 
-![](img/readme/bolsa7.png)
+![](img/readme/bolsa9.png)
 
 Después, he ampliado el método para saber cual va ser la siguiente pieza por salir. Al eliminar la pieza 'actual' con splice, si volvemos a llamar a ``this.piezasAleatorias[0]`` obtendremos la próxima ficha.
 
 Asimismo, podemos sacar la letra del array y concatenarla para crear una URL para la etiqueta `<img>`.
 
-![](img/readme/bolsa8.png)
+![](img/readme/bolsa10.png)
 
+## Borrar filas
+
+Para borrar filas, cuando una pieza colisiona con otra o el tablero, cambia su valor interno de '1' a '2'. De esta forma, es posible iterar sobre el tablero y comprobar si una fila tiene todos sus valores a '2'.
+
+ En este caso es posible usar la función ``every()`` que nos devuelve ``true`` si todos los valores cumplen el valor especificado y ``false`` si no es así. **La ventaja de usar este método es que, en el momento que no coincida un único valor para de buscar coincidencias, devuelve ``false`` y pasa a la siguiente fila**.
+
+![](img/readme/comprobar1.png)
+
+Para insertar una nueva fila también podemos usar:
+```js
+const fila = [0,0,0,0,0,0,0,0,0,0]
+```
 
  ## Colisiones
 
@@ -136,18 +169,6 @@ Además, esta fórmula también permite evitar el desplazamiento automático de 
 
 ![](img/readme/tiempo3.png)
 
-## Borrar filas
-
-Para borrar filas, cuando una pieza colisiona con otra o el tablero, cambia su valor interno de '1' a '2'. De esta forma, es posible iterar sobre el tablero y comprobar si una fila tiene todos sus valores a '2'.
-
- En este caso es posible usar la función ``every()`` que nos devuelve ``true`` si todos los valores cumplen el valor especificado y ``false`` si no es así. **La ventaja de usar este método es que, en el momento que no coincida un único valor para de buscar coincidencias, devuelve ``false`` y pasa a la siguiente fila**.
-
-![](img/readme/comprobar1.png)
-
-Para insertar una nueva fila también podemos usar:
-```js
-const fila = [0,0,0,0,0,0,0,0,0,0]
-```
 
 ## Selección aleatoria entre controles normales/invertidos
 
