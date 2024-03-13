@@ -86,7 +86,7 @@ La bolsa representa un conjunto de ``PIEZAS`` de la cual se va obteniendo una ``
 
 ![](img/readme/bolsa1.png)
 
-### Método que genera el array 'bolsa'.
+## Método que genera el array 'bolsa'.
 
 *PIEZAS* es un array predefinido de las 7 piezas que tienen una letra y color. Ejemplo:
 ```js
@@ -107,7 +107,7 @@ Se hace una copia de la matriz PIEZAS y a partir del **length** de 'copia' se va
 
 En la primera vuelta el número será de 0 a 6, como **splice** muta la matriz, en la siguiente vuelta tendrá una longitud de 6 y el número aleatorio será de 0 a 5.
 
-### Método que saca una ficha de la bolsa y la elimina.
+## Método que saca una ficha de la bolsa y la elimina.
 
 Como el array 'bolsa' ya esta desordenado gracias al método anterior, basta con comprobar si quedan piezas en la bolsa y hacer un ``.splice()`` para sacar la ficha.
 
@@ -129,8 +129,52 @@ Para borrar filas, cuando una pieza colisiona con otra o el tablero, cambia su v
 
 Para insertar una nueva fila también podemos usar:
 ```js
-const fila = [0,0,0,0,0,0,0,0,0,0]
+  const fila = [0,0,0,0,0,0,0,0,0,0]
 ```
+
+
+## Selección aleatoria entre controles normales/invertidos
+
+En un principio la dificultad ``HARD`` invertía los controles de movimiento hacia la derecha/izquierda para añadirle ese plus de dificultad. Sin embargo, si sigues jugando hay un momento en el que te acostumbras a la 'inversión'. 
+
+Para evitar que esta funcionalidad solo sirva como 'sorpresa' he añadido un método adicional que, a partir de la segunda partida, seleccionará de forma aleatoria entre controles invertidos y controles tradicionales. De esta forma, el jugador nunca sabrá si la partida va a tener los controles invertidos o no hasta que empiece a jugar.
+
+Para implementar esta funcionalidad he usado ``sessionStorage`` que permite crear variables y guardarlas como clave/valor. **Estos datos sobreviven a la recarga de página**. También existe *localStorage*, que permite una persistencia de datos superior (sobrevive a recargas de página, a la apertura de la web en diferentes pestañas del navegador e incluso al cierre del mismo). En este caso, me interesaba que solo se mantuvieran durante el refresco de página para asegurar que la primera experiencia con el modo ``HARD`` siempre fuera con los controles invertidos.
+
+Más información [aquí](https://es.javascript.info/localstorage).
+
+## Código del método
+
+1. Creamos una función para sacar un número aleatorio entre 0 y 10.
+2. Creamos la variable de ``session`` y la inicializamos con el valor ``0``.
+3. Como todos los datos se convierten a "String" es necesario hacer un *parseInt* para aumentar el valor del ``contador``.
+4. Comparamos con ``IF-ELSE`` y asignamos el evento según el número de recargas web && el número aleatorio.
+
+*Esta función se ejecuta después de seleccionar el modo hard y jugar una partida.*
+
+![](img/readme/desplazamientoAleatorio0.png)
+
+### Ejemplo de 'X' recargas y selección de controles 'normales'.
+![](img/readme/desplazamientoAleatorio1.png)
+### Ejemplo de 'X' recargas y selección de controles 'invertidos'.
+![](img/readme/desplazamientoAleatorio2.png)
+
+
+## Puntuación persistente sin BDD
+
+El juego define 2 variables de ``localStorage`` para guardar el numero de partidas y la puntuación de la partida actual. 
+
+Al unir ambos, tendriamos el numero de la partida y los datos (puntuación) de la misma. Ejemplo:
+- partida 1, 3000 puntos
+- partida 2, 0 puntos
+- partida 3, 200 puntos
+
+Después, se recorre todo el objeto y se imprime dinámicamente con Javascript en una tabla.
+
+![](img/readme/puntos.png)
+
+La razón por la que se usa el *.subString()* es porque las claves o keys no pueden contener espacios en blanco. Es decir, puedes tener partida1, pero no partida 1.
+
 
  ## Colisiones
 
@@ -168,49 +212,6 @@ Además, esta fórmula también permite evitar el desplazamiento automático de 
 ![](img/readme/desplazamiento_demo.gif)
 
 ![](img/readme/tiempo3.png)
-
-
-## Selección aleatoria entre controles normales/invertidos
-
-En un principio la dificultad ``HARD`` invertía los controles de movimiento hacia la derecha/izquierda para añadirle ese plus de dificultad. Sin embargo, si sigues jugando hay un momento en el que te acostumbras a la 'inversión'. 
-
-Para evitar que esta funcionalidad solo sirva como 'sorpresa' he añadido un método adicional que, a partir de la segunda partida, seleccionará de forma aleatoria entre controles invertidos y controles tradicionales. De esta forma, el jugador nunca sabrá si la partida va a tener los controles invertidos o no hasta que empiece a jugar.
-
-Para implementar esta funcionalidad he usado ``sessionStorage`` que permite crear variables y guardarlas como clave/valor. **Estos datos sobreviven a la recarga de página**. También existe *localStorage*, que permite una persistencia de datos superior (sobrevive a recargas de página, a la apertura de la web en diferentes pestañas del navegador e incluso al cierre del mismo). En este caso, me interesaba que solo se mantuvieran durante el refresco de página para asegurar que la primera experiencia con el modo ``HARD`` siempre fuera con los controles invertidos.
-
-Más información [aquí](https://es.javascript.info/localstorage).
-
-### Código del método
-
-1. Creamos una función para sacar un número aleatorio entre 0 y 10.
-2. Creamos la variable de ``session`` y la inicializamos con el valor ``0``.
-3. Como todos los datos se convierten a "String" es necesario hacer un *parseInt* para aumentar el valor del ``contador``.
-4. Comparamos con ``IF-ELSE`` y asignamos el evento según el número de recargas web && el número aleatorio.
-
-*Esta función se ejecuta después de seleccionar el modo hard y jugar una partida.*
-
-![](img/readme/desplazamientoAleatorio0.png)
-
-### Ejemplo de 'X' recargas y selección de controles 'normales'.
-![](img/readme/desplazamientoAleatorio1.png)
-### Ejemplo de 'X' recargas y selección de controles 'invertidos'.
-![](img/readme/desplazamientoAleatorio2.png)
-
-
-## Puntuación persistente sin BDD
-
-El juego define 2 variables de ``localStorage`` para guardar el numero de partidas y la puntuación de la partida actual. 
-
-Al unir ambos, tendriamos el numero de la partida y los datos (puntuación) de la misma. Ejemplo:
-- partida 1, 3000 puntos
-- partida 2, 0 puntos
-- partida 3, 200 puntos
-
-Después, se recorre todo el objeto y se imprime dinámicamente con Javascript en una tabla.
-
-![](img/readme/puntos.png)
-
-La razón por la que se usa el *.subString()* es porque las claves o keys no pueden contener espacios en blanco. Es decir, puedes tener partida1, pero no partida 1.
 
 
 # Recursos

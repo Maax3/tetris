@@ -1,8 +1,9 @@
 import { animacion, desplazar, desplazarInvertido, modoHard } from "./main.js";
 import { cancionNormalTheme, cancionHardTheme } from "./Sonido.js";
 /**
- * Esta clase controla la ventana modal 'Inicial'desencadenando el loop del juego con la función de animacion() proveniente de main.js.
- * También altera el estado del 'modoHard' y la vista web (aparicion/alineacion de elementos)
+ * Esta clase controla la ventana modal Inicial desencadenando el loop del juego 
+ * con la función de animacion() proveniente de main.js.
+ * También altera el estado del 'modoHard' y la vista web (aparicion/desplazamiento de elementos HTML)
  */
 const menu = document.getElementById('ventanaMenu');
 const btnMenuPlay = document.getElementById('btnMenuStart');
